@@ -1,5 +1,6 @@
 import {useForm} from "react-hook-form"
 import {z} from "zod"
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import ImgForm from "../assets/Placeholder.png";
 
@@ -29,14 +30,23 @@ const signInSchema = z.object({
 });
 
 export function SignIn(){
+
+    const {register, handleSubmit, formState: {errors}} = useForm({resolver: zodResolver(signInSchema)})
+
+    function onSubmit(){
+
+    }
     return(
         <div className="bg-gray-800">
             <img src={ImgForm} alt="" className="h-[691px]" />
             <div>
                 <h2>Create Account</h2>
                 <p>Bem-vindo! Insira seus dados e comece a criar, colecionar e vender NFTs.</p>
-                <form onSubmit={}>
-                    <Input/>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Input legend="Nome" type="text" placeholder="Digite seu nome" error={errors.nome?.message} {...register('nome')} />
+                    <Input legend="E-mail" type="email" placeholder="Digite seu E-mail" error={errors.email?.message}{...register('email')}  />
+                    <Input legend="senha" type="password" placeholder="Digite sua senha" error={errors.senha?.message} {...register('senha')} />
+                    <Input legend="Confirmar Senha" type="password" placeholder="Confirme sua senha" error={errors.confirmarSenha?.message} {...register('confirmarSenha')}  />
                 </form>
             </div>
         </div>
