@@ -37,12 +37,12 @@ export function SignIn(){
 
     }
     return(
-        <div className="bg-gray-800">
-            <img src={ImgForm} alt="" className="h-[691px]" />
-            <div>
+        <div className="bg-gray-800 flex items-center w-full text-white">
+            <img src={ImgForm} alt="" className="h-[691px] w-1/2" />
+            <div className="flex flex-col text-center w-1/2 gap-2">
                 <h2>Create Account</h2>
                 <p>Bem-vindo! Insira seus dados e comece a criar, colecionar e vender NFTs.</p>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col items-stretch gap-3">
                     <Input legend="Nome" type="text" placeholder="Digite seu nome" error={errors.nome?.message} {...register('nome')} />
                     <Input legend="E-mail" type="email" placeholder="Digite seu E-mail" error={errors.email?.message}{...register('email')}  />
                     <Input legend="senha" type="password" placeholder="Digite sua senha" error={errors.senha?.message} {...register('senha')} />
